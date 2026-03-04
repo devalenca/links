@@ -1,11 +1,18 @@
+import { Categories } from "@/components/categories";
+import { Link } from "@/components/link";
+import { Option } from "@/components/option";
 import { colors } from "@/styles/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { FlatList, Image, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { styles } from "./styles";
-
-import { Categories } from "@/components/categories";
-import { Link } from "@/components/link";
 
 export default function Index() {
   return (
@@ -38,6 +45,28 @@ export default function Index() {
         contentContainerStyle={styles.linksContent}
         showsVerticalScrollIndicator={false}
       />
+      <Modal transparent visible>
+        <View style={styles.modal}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalCategory}>Link Details</Text>
+              <TouchableOpacity>
+                <MaterialIcons
+                  name="close"
+                  size={24}
+                  color={colors.gray[300]}
+                />
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.modalLinkName}>Link Test</Text>
+            <Text style={styles.modalUrl}>https://another.com</Text>
+            <View style={styles.modalFooter}>
+              <Option name="Edit Link" icon="edit" />
+              <Option name="Delete Link" icon="delete" variant="secondary" />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
