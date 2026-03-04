@@ -1,10 +1,11 @@
-import { Category } from "@/components/category";
 import { colors } from "@/styles/colors";
-import { categories } from "@/utils/categories";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { Image, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
+
+import { Categories } from "@/components/categories";
+import { Link } from "@/components/link";
 
 export default function Index() {
   return (
@@ -16,35 +17,26 @@ export default function Index() {
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
-      <Category
-        name={categories[0].name}
-        icon={categories[0].icon}
-        isSelected
-      />
-      <Category
-        name={categories[1].name}
-        icon={categories[1].icon}
-        isSelected={false}
-      />
-      <Category
-        name={categories[2].name}
-        icon={categories[2].icon}
-        isSelected={false}
-      />
-      <Category
-        name={categories[3].name}
-        icon={categories[3].icon}
-        isSelected={false}
-      />
-      <Category
-        name={categories[4].name}
-        icon={categories[4].icon}
-        isSelected={false}
-      />
-      <Category
-        name={categories[5].name}
-        icon={categories[5].icon}
-        isSelected={false}
+
+      <Categories />
+
+      <FlatList
+        data={[
+          { id: "1", name: "Example Link", url: "https://example.com" },
+          { id: "2", name: "Another Link", url: "https://another.com" },
+          { id: "3", name: "Third Link", url: "https://third.com" },
+        ]}
+        keyExtractor={(item) => item.id}
+        renderItem={() => (
+          <Link
+            name="Example Link"
+            url="https://example.com"
+            onDetails={() => console.log("Details")}
+          />
+        )}
+        style={styles.links}
+        contentContainerStyle={styles.linksContent}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

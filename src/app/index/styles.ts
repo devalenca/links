@@ -20,5 +20,14 @@ export const styles = StyleSheet.create({
     logo: {
         height: 32,
         width: 38,
+    },
+    links: {
+        borderTopWidth: 1,
+        borderTopColor: colors.gray[600],
+    },
+    linksContent: {
+        padding: 24,
+        gap: 20,
+        paddingBottom: 100,
     }
 });
